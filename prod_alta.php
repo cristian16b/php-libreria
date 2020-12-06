@@ -1,22 +1,23 @@
 <?php include 'cnx.php';   ?>
 <html>
 <head>
-	<title>Alta de Categorias</title>
+	<title>Alta de producto</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<?php
 
-include 'menu.php';
+<a href='index.php'>Volver</a><br />
+
+<?php
 
 if ($_POST[subgrabar]) {
 
 	$_POST = clean($_POST);
 
-	if ($_POST[categoria]) {
+	if ($_POST[producto]) {
 		mysql_query('BEGIN WORK');
 
-		$sql = "select max(cod_cat) as M from categoria";
+		$sql = "select max(cod_cat) as M from producto";
 		$res = mysql_query($sql);
 		$row = mysql_fetch_array($res);
 		if ($row[M]>0)
@@ -24,9 +25,9 @@ if ($_POST[subgrabar]) {
 		else
 		$max = 1;
 
-		$sql = "insert into categoria values (";
+		$sql = "insert into producto values (";
 		$sql .= $max.", ";
-		$sql .= "'".$_POST[categoria]."') ";
+		$sql .= "'".$_POST[producto]."') ";
 		$res = mysql_query($sql);
 
 		mysql_query('COMMIT');
@@ -37,7 +38,7 @@ if ($_POST[subgrabar]) {
 echo '<form method=POST action="?">';
 echo '<table cellspacing="0">';
 echo '<tr>';
-echo '<td>Nombre de categoria</td><td><input type="text" id="categoria" name="categoria"></td>';
+echo '<td>Nombre de producto</td><td><input type="text" id="producto" name="producto"></td>';
 echo '</tr>';
 echo '<tr>';
 echo '<td colspan="2"><input value="Dar de Alta" type="submit" name="subgrabar"></td>';
