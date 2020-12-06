@@ -6,13 +6,12 @@
 </head>
 <body>
 
-<div class="header">bienvenido a la tienda de discos</div>
+<div class="header">bienvenido a la tienda</div>
 
-<a href='buscador.php'>Buscador</a><br />
-<a href='carrito.php'>Ver Carrito</a><br />
-<a href='verdiscos.php?modo=n'>Novedades</a><br />
-<a href='verdiscos.php?modo=v'>Los discos mas vendidos</a><br />
-<a href='verdiscos.php?modo=i'>Los artistas mas vendidos</a>
+<a href='cat_alta.php'>Crear producto</a><br />
+<a href='cat_baja.php'>Eliminar producto</a><br />
+<a href='cat_mod.php'>Modificar producto</a><br />
+<a href='cat_ver.php'>Ver producto</a><br />
 
 </body>
 </html>
