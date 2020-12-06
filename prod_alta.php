@@ -10,27 +10,28 @@
 
 <?php
 
-if ($_POST[subgrabar]) {
+if (isset($_POST['producto'])) {
 
-	$_POST = clean($_POST);
 
-	if ($_POST[producto]) {
+	if($_POST['producto'] == "") {
+		echo 'Debe completar el nombre';
+	}
+	else {
+		$_POST = clean($_POST);
+
 		mysql_query('BEGIN WORK');
-
-		$sql = "select max(cod_cat) as M from producto";
+	
+		$sql = "insert into producto (descripcion) values (" ."'". $_POST['producto'] . "'" .") ";
+	
 		$res = mysql_query($sql);
-		$row = mysql_fetch_array($res);
-		if ($row[M]>0)
-		$max = $row[M] +1;
-		else
-		$max = 1;
-
-		$sql = "insert into producto values (";
-		$sql .= $max.", ";
-		$sql .= "'".$_POST[producto]."') ";
-		$res = mysql_query($sql);
-
-		mysql_query('COMMIT');
+	
+		if($res)  {
+			mysql_query('COMMIT');
+			echo 'Se registro correctamente el producto.';
+		}
+		else {
+			echo 'Ocurrio un error al insertar';
+		}
 	}
 }
 
