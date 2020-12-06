@@ -1,13 +1,14 @@
 <?php include 'cnx.php';   ?>
 <html>
 <head>
-	<title>Modificacion de Categorias</title>
+	<title>Modificacion de producto</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<?php
 
-include 'menu.php';
+<a href='index.php'>Volver</a><br />
+
+<?php
 
 $_POST = clean($_POST);
 $_GET = clean($_GET);
@@ -23,7 +24,7 @@ if ($_POST[subgrabar]) {
 
 if ($_GET[cod_cat]) {
 
-	$sql = "select * from categoria where cod_cat = ".$_GET[cod_cat];
+	$sql = "select * from producto where id = ".$_GET[cod_cat];
 	$res = mysql_query($sql);
 	$row = mysql_fetch_array($res);
 
@@ -44,20 +45,20 @@ if ($_GET[cod_cat]) {
 
 } else {
      
-	$sql = "select * from categoria order by desc_cat asc";
+	$sql = "select * from producto order by id asc";
 	$res = mysql_query($sql);
 
 	if (mysql_num_rows($res)>0)     {
 		echo '<table cellspacing="0">';
-		echo '<tr><td>Nombre de categoria</td><td>ver detalle</td></tr>';
+		echo '<tr><td>Nombre del producto</td><td>ver detalle</td></tr>';
 		while ($row = mysql_fetch_array($res)) {
 			echo '<tr>';
-			echo '<td>'.$row[desc_cat].'</td><td><a href=cat_mod.php?cod_cat='.$row[cod_cat].'>ver detalle</a></td>';
+			echo '<td>'.$row['descripcion'].'</td><td><a href=prod_mod.php?cod_cat='.$row['id'].'>ver detalle</a></td>';
 			echo '</tr>';
 		}
 		echo '</table>';
 	} else                          {
-		echo 'no hay categorias disponibles';
+		echo 'no hay productos disponibles';
 	}
 }
 
