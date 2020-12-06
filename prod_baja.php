@@ -1,27 +1,31 @@
 <?php include 'cnx.php';   ?>
 <html>
 <head>
-	<title>Baja de Categorias</title>
+	<title>Baja de producto</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<?php
 
-include 'menu.php';
+<a href='index.php'>Volver</a><br />
+
+<?php
 
 $_POST = clean($_POST);
 
 if ($_POST[subgrabar]) {
-	for ($i=1; $i<=$_POST[cant]; $i++) {
-		$temp = 'check'.$i;
-		if ($_POST["$temp"]) { //atencion a las comillas dobles
-			$sql = "delete from categoria where cod_cat = ".$_POST["$temp"];
-			$res = mysql_query($sql);
+	for ($i=1; $i<=$_POST['cant']; $i++) {
+          // var_dump($_POST);
+          $temp = 'check'.$i;
+          if ($_POST[$temp]) {
+               mysql_query('BEGIN WORK');
+               $sql = "delete from producto where id = ".$_POST[$temp];
+               $res = mysql_query($sql);
+               mysql_query('COMMIT');
 		}
 	}
 }
 
-$sql = "select * from categoria order by desc_cat asc";
+$sql = "select * from producto order by descripcion asc";
 $res = mysql_query($sql);
 
 if (mysql_num_rows($res))    {
@@ -32,8 +36,8 @@ if (mysql_num_rows($res))    {
      $c=1;
      while ($row = mysql_fetch_array($res))  {
           echo '<tr>';
-          echo '<td>'.$row[desc_cat].'</td>';
-          echo '<td><input type=checkbox name=check'.$c.' value='.$row[cod_cat].'></td>';
+          echo '<td>'.$row['descripcion'].'</td>';
+          echo '<td><input type=checkbox name=check'.$c.' value='.$row['id'].'></td>';
           echo '</tr>';
           $c++;
      }
