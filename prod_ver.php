@@ -6,7 +6,19 @@
 </head>
 <body>
 
+<?php 
+	if (!isset($_GET['id'])) {
+?>
 <a href='index.php'>Volver</a><br />
+<?php 
+	}
+	else {
+?>
+<a href='prod_ver.php'>Volver al listado</a><br />
+<?php
+	} 
+?>
+
 
 <?php
 
