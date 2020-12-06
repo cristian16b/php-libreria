@@ -8,10 +8,10 @@
 
 <div class="header">bienvenido a la tienda</div>
 
-<a href='cat_alta.php'>Crear producto</a><br />
-<a href='cat_baja.php'>Eliminar producto</a><br />
-<a href='cat_mod.php'>Modificar producto</a><br />
-<a href='cat_ver.php'>Ver producto</a><br />
+<a href='prod_alta.php'>Crear producto</a><br />
+<a href='prod_baja.php'>Eliminar producto</a><br />
+<a href='prod_mod.php'>Modificar producto</a><br />
+<a href='prod_ver.php'>Ver producto</a><br />
 
 </body>
 </html>
