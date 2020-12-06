@@ -1,7 +1,7 @@
 <?php
 
 $cnx = mysql_pconnect('localhost', 'root', '') or die('Error en la conexion');
-$db = mysql_select_db('bddiscos');
+$db = mysql_select_db('bdproductos');
 
 session_start();
 
