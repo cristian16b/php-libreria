@@ -10,6 +10,8 @@
 
 <?php
 
+include 'conx.php';
+
 if (isset($_POST['producto'])) {
 
 
@@ -19,14 +21,16 @@ if (isset($_POST['producto'])) {
 	else {
 		$_POST = clean($_POST);
 
-		mysql_query('BEGIN WORK');
+		mysqli_query($cnx,'BEGIN WORK');
 	
 		$sql = "insert into producto (descripcion) values (" ."'". $_POST['producto'] . "'" .") ";
 
-		$res = mysql_query($sql);
+		$res = mysqli_query($cnx,$sql);
+
+		var_dump($res);
 	
 		if($res)  {
-			mysql_query('COMMIT');
+			mysqli_query($cnx,'COMMIT');
 			echo 'Se registro correctamente el producto.';
 		}
 		else {
