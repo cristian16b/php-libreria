@@ -10,6 +10,8 @@
 
 <?php
 
+include 'conx.php';
+
 $_POST = clean($_POST);
 
 if ($_POST[subgrabar]) {
@@ -17,24 +19,24 @@ if ($_POST[subgrabar]) {
           // var_dump($_POST);
           $temp = 'check'.$i;
           if ($_POST[$temp]) {
-               mysql_query('BEGIN WORK');
+               mysqli_query($cnx,'BEGIN WORK');
                $sql = "delete from producto where id = ".$_POST[$temp];
-               $res = mysql_query($sql);
-               mysql_query('COMMIT');
+               $res = mysqli_query($cnx,$sql);
+               mysqli_query($cnx,'COMMIT');
 		}
 	}
 }
 
 $sql = "select * from producto order by descripcion asc";
-$res = mysql_query($sql);
+$res = mysqli_query($cnx,$sql);
 
-if (mysql_num_rows($res))    {
+if (mysqli_num_rows($res))    {
      echo '<form action="?" method=POST>';
      echo '<table cellspacing="0">';
      echo '<tr><td>Nombre</td><td>dar de baja</td></tr>';
 
      $c=1;
-     while ($row = mysql_fetch_array($res))  {
+     while ($row = mysqli_fetch_array($res))  {
           echo '<tr>';
           echo '<td>'.$row['descripcion'].'</td>';
           echo '<td><input type=checkbox name=check'.$c.' value='.$row['id'].'></td>';

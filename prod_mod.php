@@ -10,25 +10,27 @@
 
 <?php
 
+include 'conx.php';
+
 $_POST = clean($_POST);
 $_GET = clean($_GET);
 
 if ($_POST[subgrabar]) {
-	 mysql_query('BEGIN WORK');
+	 mysqli_query($cnx,'BEGIN WORK');
      $sql =  " update producto set";
      $sql .= " descripcion = '".$_POST['categoria']."'";
 	 $sql .= " where id = ".$_POST['id'];
 
-	 $res = mysql_query($sql);
-	 mysql_query('COMMIT');
+	 $res = mysqli_query($cnx,$sql);
+	 mysqli_query($cnx,'COMMIT');
      $_GET['id']='';
 }
 
 if ($_GET['id']) {
 
 	$sql = "select * from producto where id = ".$_GET['id'];
-	$res = mysql_query($sql);
-	$row = mysql_fetch_array($res);
+	$res = mysqli_query($cnx,$sql);
+	$row = mysqli_fetch_array($res);
 
 	echo '<form method=POST action="?">';
 
@@ -48,12 +50,12 @@ if ($_GET['id']) {
 } else {
      
 	$sql = "select * from producto order by id asc";
-	$res = mysql_query($sql);
+	$res = mysqli_query($cnx,$sql);
 
-	if (mysql_num_rows($res)>0)     {
+	if (mysqli_num_rows($res)>0)     {
 		echo '<table cellspacing="0">';
 		echo '<tr><td>Nombre del producto</td><td>ver detalle</td></tr>';
-		while ($row = mysql_fetch_array($res)) {
+		while ($row = mysqli_fetch_array($res)) {
 			echo '<tr>';
 			echo '<td>'.$row['descripcion'].'</td><td><a href=prod_mod.php?id='.$row['id'].'>ver detalle</a></td>';
 			echo '</tr>';
