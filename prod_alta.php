@@ -22,7 +22,7 @@ if (isset($_POST['producto'])) {
 		mysql_query('BEGIN WORK');
 	
 		$sql = "insert into producto (descripcion) values (" ."'". $_POST['producto'] . "'" .") ";
-	
+
 		$res = mysql_query($sql);
 	
 		if($res)  {

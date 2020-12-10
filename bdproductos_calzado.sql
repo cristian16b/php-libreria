@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 -- Base de datos: `bdproductos`
 --
 
+CREATE DATABASE prueba2;
+
 -- --------------------------------------------------------
 
 --
@@ -42,7 +44,7 @@ INSERT INTO `producto` (`id`, `descripcion`) VALUES
 (3, 'Zapatos de hombre'),
 (4, 'Zapatos de mujer'),
 (5, 'Sandalias de mujer'),
-(6, 'Botas de hombre');
+(6, 'Botas de hombre'),
 (6, 'Botas de mujer');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
